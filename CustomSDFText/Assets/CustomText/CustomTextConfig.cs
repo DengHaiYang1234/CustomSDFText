@@ -5,22 +5,62 @@ using TMPro.EditorUtilities;
 using UnityEditor;
 using UnityEngine;
 
-public class TFontGlyph
+public class TFontGlyphMetrics
 {
-    public Rect rect;
+    //
+    // Summary:
+    //     The width of the glyph.
+    public float width;
+    //
+    // Summary:
+    //     The height of the glyph.
+    public float height;
+    //
+    // Summary:
+    //     The horizontal distance from the current drawing position (origin) relative to
+    //     the element's left bounding box edge (bbox).
     public float xOffset;
+    //
+    // Summary:
+    //     The vertical distance from the current baseline relative to the element's top
+    //     bounding box edge (bbox).
     public float yOffset;
+    //
+    // Summary:
+    //     The horizontal distance to increase (left to right) or decrease (right to left)
+    //     the drawing position relative to the origin of the text element.
     public float xAdvance;
-    public Dictionary<uint, float> kerning;
 
-
-
-    public TFontGlyph(Rect rect, float xOffset, float yOffset, float xAdvance)
+    public TFontGlyphMetrics(float width, float height, float xOffset, float yOffset, float xAdvance)
     {
-        this.rect = rect;
+        this.width = width;
+        this.height = height;
         this.xOffset = xOffset;
         this.yOffset = yOffset;
         this.xAdvance = xAdvance;
+    }
+
+    public TFontGlyphMetrics(TFontGlyphMetrics m)
+    {
+        this.width = m.width;
+        this.height = m.height;
+        this.xOffset = m.xOffset;
+        this.yOffset = m.yOffset;
+        this.xAdvance = m.xAdvance;
+    }
+}
+
+public class TFontGlyph
+{
+    public Rect rect;
+    public TFontGlyphMetrics metrics;
+    public Dictionary<uint, float> kerning;
+
+
+    public TFontGlyph(Rect rect, float width, float height, float xOffset, float yOffset, float xAdvance)
+    {
+        this.rect = rect;
+        metrics = new TFontGlyphMetrics(width, height, xOffset, yOffset, xAdvance);
     }
 
     public float GetKerning(uint previousChar)
@@ -95,7 +135,7 @@ public class CustomTextConfig
                 m_Instance = new CustomTextConfig();
                 m_Instance.Init();
             }
-                
+
 
             return m_Instance;
         }
@@ -107,6 +147,8 @@ public class CustomTextConfig
     private Dictionary<uint, TFontGlyph> m_GlyphDictionary = new Dictionary<uint, TFontGlyph>();
     private Dictionary<uint, TFontGlyphAdjustmentRecord[]> m_KerningDictionary = new Dictionary<uint, TFontGlyphAdjustmentRecord[]>();
     private TFontFace m_TFontFace;
+
+    
 
 
     public void Init()
@@ -185,7 +227,8 @@ public class CustomTextConfig
 
                 TFontGlyph m_TFontGlyph = new TFontGlyph(
                     new Rect(item.glyphRect.x, item.glyphRect.y, item.glyphRect.width, item.glyphRect.height),
-                    item.glyphMetrics.xOffset, item.glyphMetrics.yOffset, item.glyphMetrics.xAdvance
+
+                    item.glyphMetrics.width, item.glyphMetrics.height, item.glyphMetrics.xOffset, item.glyphMetrics.yOffset, item.glyphMetrics.xAdvance
                 );
 
                 if (m_KerningDictionary.ContainsKey(item.glyphIndex))

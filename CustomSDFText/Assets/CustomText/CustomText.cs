@@ -51,6 +51,12 @@ public class CustomText : MonoBehaviour
 
     public void RebuildMesh()
     {
+        if (UpdadeConfig)
+        {
+            UpdadeConfig = false;
+            CustomTextConfig.Instance.Init();
+        }
+
         if (m_Mesh == null)
         {
             m_Mesh = new Mesh();
@@ -109,8 +115,6 @@ public class CustomText : MonoBehaviour
             uint charCode = (uint)c;
             if (!CustomTextConfig.Instance.Glyphs.ContainsKey(charCode))
             {
-                Debug.LogError("charCode:" + charCode);
-                Debug.LogError("code:" + (int)c);
                 continue;
             }
             TFontGlyph glyph = CustomTextConfig.Instance.Glyphs[charCode];
@@ -123,7 +127,7 @@ public class CustomText : MonoBehaviour
 
             BlitQuad(cursorX, glyph, baseScale);
 
-            cursorX += glyph.xAdvance * baseScale + kerning;
+            cursorX += glyph.metrics.xAdvance * baseScale + kerning;
             prevGlyph = glyph;
         }
 
@@ -139,43 +143,42 @@ public class CustomText : MonoBehaviour
         float atlasWidth = CustomTextConfig.Instance.TFontFace.atlasWidth;
         float atlasHeight = CustomTextConfig.Instance.TFontFace.atlasHeight;
 
-        float padding = 0;
+        float padding = 1.25f;
 
         Vector3 top_left;
-        top_left.x = (glyph.xOffset - padding) * baseScale + cursorX;
-        top_left.y = (glyph.yOffset + padding) * baseScale;
+        top_left.x = (glyph.metrics.xOffset - padding) * baseScale + cursorX;
+        top_left.y = (glyph.metrics.yOffset + padding) * baseScale;
         top_left.z = 0;
-        //Debug.LogError(string.Format("【top_left 1】x:{0} y:{1} z:{2}", top_left.x, top_left.y, top_left.z));
 
         Vector3 bottom_left;
         bottom_left.x = top_left.x;
-        bottom_left.y = top_left.y - ((glyph.rect.width + padding * 2) * baseScale);
+        bottom_left.y = top_left.y - ((glyph.metrics.height + padding * 2) * baseScale);
         bottom_left.z = 0;
-        //Debug.LogError(string.Format("【bottom_left 1】x:{0} y:{1} z:{2}", bottom_left.x, bottom_left.y, bottom_left.z));
 
         Vector3 top_right;
-        top_right.x = bottom_left.x + ((glyph.rect.width + padding * 2) * baseScale);
+        top_right.x = bottom_left.x + ((glyph.metrics.width + padding * 2) * baseScale);
         top_right.y = top_left.y;
         top_right.z = 0;
-        //Debug.LogError(string.Format("【top_right 1】x:{0} y:{1} z:{2}", top_right.x, top_right.y, top_right.z));
 
         Vector3 bottom_right;
         bottom_right.x = top_right.x;
         bottom_right.y = bottom_left.y;
         bottom_right.z = 0;
-        //Debug.LogError(string.Format("【bottom_right 1】x:{0} y:{1} z:{2}", bottom_right.x, bottom_right.y, bottom_right.z));
 
         Vector2 uv_bottom_left;
         uv_bottom_left.x = (glyph.rect.x - padding) / atlasWidth;
         uv_bottom_left.y = (glyph.rect.y - padding) / atlasHeight;
 
+
         Vector2 uv_top_left;
         uv_top_left.x = uv_bottom_left.x;
         uv_top_left.y = (glyph.rect.y + padding + glyph.rect.height) / atlasHeight;
 
+
         Vector2 uv_top_right;
         uv_top_right.x = (glyph.rect.x + padding + glyph.rect.width) / atlasWidth;
         uv_top_right.y = uv_top_left.y;
+
 
         Vector2 uv_bottom_right;
         uv_bottom_right.x = uv_top_right.x;

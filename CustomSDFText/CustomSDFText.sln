@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity.TextMeshPro", "Unity.TextMeshPro.csproj", "{7F4AC828-7704-F12E-F7D6-6D86D8847CE8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity.TextMeshPro.Tests", "Unity.TextMeshPro.Tests.csproj", "{02C8A1AA-7976-4F21-6DCD-A88F0E07B8E0}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.csproj", "{BC05C884-B81F-C009-494B-A8C9E490A21A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity.TextMeshPro.Tests", "Unity.TextMeshPro.Tests.csproj", "{02C8A1AA-7976-4F21-6DCD-A88F0E07B8E0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity.TextMeshPro.Editor", "Unity.TextMeshPro.Editor.csproj", "{C2E4E6C8-85B4-8C3E-801C-4D800A36352D}"
 EndProject
@@ -23,14 +23,14 @@ Global
 		{7F4AC828-7704-F12E-F7D6-6D86D8847CE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7F4AC828-7704-F12E-F7D6-6D86D8847CE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7F4AC828-7704-F12E-F7D6-6D86D8847CE8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{02C8A1AA-7976-4F21-6DCD-A88F0E07B8E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{02C8A1AA-7976-4F21-6DCD-A88F0E07B8E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{02C8A1AA-7976-4F21-6DCD-A88F0E07B8E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{02C8A1AA-7976-4F21-6DCD-A88F0E07B8E0}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BC05C884-B81F-C009-494B-A8C9E490A21A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BC05C884-B81F-C009-494B-A8C9E490A21A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BC05C884-B81F-C009-494B-A8C9E490A21A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BC05C884-B81F-C009-494B-A8C9E490A21A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{02C8A1AA-7976-4F21-6DCD-A88F0E07B8E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02C8A1AA-7976-4F21-6DCD-A88F0E07B8E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02C8A1AA-7976-4F21-6DCD-A88F0E07B8E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02C8A1AA-7976-4F21-6DCD-A88F0E07B8E0}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C2E4E6C8-85B4-8C3E-801C-4D800A36352D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C2E4E6C8-85B4-8C3E-801C-4D800A36352D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C2E4E6C8-85B4-8C3E-801C-4D800A36352D}.Release|Any CPU.ActiveCfg = Release|Any CPU
